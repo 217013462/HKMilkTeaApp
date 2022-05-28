@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "471673960295",
+    "project_id": "hkmilkteaapp",
+    "storage_bucket": "hkmilkteaapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471673960295:android:fb1cf5f756aafd33ef21c2",
+        "android_client_info": {
+          "package_name": "shape.edu.hkmilkteaapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "471673960295-nq5e0uh13c1mq18f9008325la2oe7vu3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcCMouG-YyZkEF6Yv9v5_Vfs1U3lQIQCw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "471673960295-nq5e0uh13c1mq18f9008325la2oe7vu3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
