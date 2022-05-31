@@ -3,51 +3,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <item
-        android:id="@+id/navHome"
-        android:icon="@drawable/ic_baseline_home_24"
-        android:title="Home"/>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/navHome"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="Home"/>
 
-    <item android:title="Tutorial">
-        <menu>
-            <item
-                android:id="@+id/navTutorialNotes"
-                android:icon="@drawable/ic_baseline_library_books_24"
-                android:title="Tutorial Notes"/>
+        <item android:title="Tutorial">
+            <menu>
+                <item
+                    android:id="@+id/navTutorialNotes"
+                    android:icon="@drawable/ic_baseline_library_books_24"
+                    android:title="Tutorial Notes"/>
 
-            <item
-                android:id="@+id/navTutorialVideos"
-                android:icon="@drawable/ic_baseline_video_library_24"
-                android:title="Tutorial Videos"/>
-        </menu>
-    </item>
+                <item
+                    android:id="@+id/navTutorialVideos"
+                    android:icon="@drawable/ic_baseline_video_library_24"
+                    android:title="Tutorial Videos"/>
+            </menu>
+        </item>
 
-    <item android:title="Notes">
-        <menu>
-            <item
-                android:id="@+id/navNotes"
-                android:icon="@drawable/ic_baseline_edit_note_24"
-                android:title="Tea Notes"/>
-        </menu>
-    </item>
+        <item android:title="Notes">
+            <menu>
+                <item
+                    android:id="@+id/navNotes"
+                    android:icon="@drawable/ic_baseline_edit_note_24"
+                    android:title="Tea Notes"/>
+            </menu>
+        </item>
 
-    <item android:title="Location">
-        <menu>
-            <item
-                android:id="@+id/navMap"
-                android:icon="@drawable/ic_baseline_map_24"
-                android:title="Milk Tea Map"/>
-        </menu>
-    </item>
+        <item android:title="Location">
+            <menu>
+                <item
+                    android:id="@+id/navMap"
+                    android:icon="@drawable/ic_baseline_map_24"
+                    android:title="Milk Tea Map"/>
+            </menu>
+        </item>
+    </group>
 
-    <item android:title="Profile">
-        <menu>
-            <item
-                android:id="@+id/navLogout"
-                android:icon="@drawable/ic_baseline_logout_24"
-                android:title="Logout"/>
-        </menu>
-    </item>
+    <group>
+        <item android:title="Profile">
+            <menu>
+                <item
+                    android:id="@+id/navLogout"
+                    android:icon="@drawable/ic_baseline_logout_24"
+                    android:title="Logout"/>
+            </menu>
+        </item>
+    </group>
 
 
 </menu>
