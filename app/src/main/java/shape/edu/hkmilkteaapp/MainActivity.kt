@@ -4,11 +4,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,6 +21,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val user = Firebase.auth.currentUser
+        val email = user?.email
+        val textViewHomeWelcome = findViewById<TextView>(R.id.textViewHomeWelcome)
+        textViewHomeWelcome.text = "$email"
 
         val drawerLayout : DrawerLayout = findViewById(R.id.drawerLayout)
         val navView : NavigationView = findViewById(R.id.navigationView)
@@ -39,6 +47,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.navLogout -> {
                     FirebaseAuth.getInstance().signOut()
                     startActivity(Intent(this,LoginActivity::class.java))
+                    finish()
                 }
             }
 

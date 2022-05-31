@@ -13,8 +13,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/textViewUserEmail"
         android:paddingTop="25dp"
-        android:textSize="15dp"
-        android:text="editTextEmailAddress.text.toString()"
+        android:textSize="15sp"
+        android:text="test@example.com"
         android:textColor="@color/black"
         android:textStyle="bold" />
 
