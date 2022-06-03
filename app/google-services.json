@@ -7,12 +7,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:471673960295:android:fb1cf5f756aafd33ef21c2",
+        "mobilesdk_app_id": "1:471673960295:android:bbd11b7e0dec8aeeef21c2",
         "android_client_info": {
           "package_name": "shape.edu.hkmilkteaapp"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "471673960295-fb7jel3dlvnafnahg1skj4ude2s58lrd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "shape.edu.hkmilkteaapp",
+            "certificate_hash": "ad10d38bb7d4f3512f5c4e1061916859d1466254"
+          }
+        },
         {
           "client_id": "471673960295-nq5e0uh13c1mq18f9008325la2oe7vu3.apps.googleusercontent.com",
           "client_type": 3

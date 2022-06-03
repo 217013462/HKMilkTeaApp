@@ -12,14 +12,19 @@
         <item android:title="Tutorial">
             <menu>
                 <item
-                    android:id="@+id/navTutorialNotes"
+                    android:id="@+id/navTutorialTools"
+                    android:icon="@drawable/ic_baseline_build_24"
+                    android:title="Tools"/>
+
+                <item
+                    android:id="@+id/navTutorialProcedures"
                     android:icon="@drawable/ic_baseline_library_books_24"
-                    android:title="Tutorial Notes"/>
+                    android:title="Procedures"/>
 
                 <item
                     android:id="@+id/navTutorialVideos"
                     android:icon="@drawable/ic_baseline_video_library_24"
-                    android:title="Tutorial Videos"/>
+                    android:title="Videos"/>
             </menu>
         </item>
 
@@ -28,7 +33,7 @@
                 <item
                     android:id="@+id/navNotes"
                     android:icon="@drawable/ic_baseline_edit_note_24"
-                    android:title="Tea Notes"/>
+                    android:title="Your Tea Notes"/>
             </menu>
         </item>
 
@@ -37,7 +42,7 @@
                 <item
                     android:id="@+id/navMap"
                     android:icon="@drawable/ic_baseline_map_24"
-                    android:title="Milk Tea Map"/>
+                    android:title="Famous Spots"/>
             </menu>
         </item>
     </group>

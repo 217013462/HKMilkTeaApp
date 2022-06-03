@@ -44,8 +44,11 @@ class MainActivity : AppCompatActivity() {
 
             when(it.itemId){
                 R.id.navHome -> Toast.makeText(applicationContext, "Clicked Home", Toast.LENGTH_SHORT).show()
-                R.id.navTutorialNotes -> Toast.makeText(applicationContext, "Clicked Tutorial Notes", Toast.LENGTH_SHORT).show()
-                R.id.navTutorialVideos -> Toast.makeText(applicationContext, "Clicked Tutorial Videos", Toast.LENGTH_SHORT).show()
+                R.id.navTutorialTools -> Toast.makeText(applicationContext, "Clicked Tutorial Tools", Toast.LENGTH_SHORT).show()
+                R.id.navTutorialProcedures -> Toast.makeText(applicationContext, "Clicked Tutorial Procedures", Toast.LENGTH_SHORT).show()
+                R.id.navTutorialVideos -> {
+                    replaceFragment(VideoFragment(), it.title.toString())
+                }
                 R.id.navNotes -> Toast.makeText(applicationContext, "Clicked Notes", Toast.LENGTH_SHORT).show()
                 R.id.navMap -> {
                     replaceFragment(MapsFragment(), it.title.toString())
