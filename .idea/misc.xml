@@ -18,8 +18,11 @@
         <entry key="..\:/6002CEM/assignment/app/src/main/res/layout/activity_login.xml" value="0.25364583333333335" />
         <entry key="..\:/6002CEM/assignment/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/6002CEM/assignment/app/src/main/res/layout/activity_register.xml" value="0.25364583333333335" />
+        <entry key="..\:/6002CEM/assignment/app/src/main/res/layout/fragment_main.xml" value="0.2" />
         <entry key="..\:/6002CEM/assignment/app/src/main/res/layout/fragment_maps.xml" value="0.13903985507246377" />
-        <entry key="..\:/6002CEM/assignment/app/src/main/res/layout/fragment_video.xml" value="0.22735507246376813" />
+        <entry key="..\:/6002CEM/assignment/app/src/main/res/layout/fragment_procedures.xml" value="0.1125" />
+        <entry key="..\:/6002CEM/assignment/app/src/main/res/layout/fragment_tools.xml" value="0.18229166666666666" />
+        <entry key="..\:/6002CEM/assignment/app/src/main/res/layout/fragment_video.xml" value="0.20395119116792562" />
         <entry key="..\:/6002CEM/assignment/app/src/main/res/layout/nav_header.xml" value="0.25364583333333335" />
         <entry key="..\:/6002CEM/assignment/app/src/main/res/menu/nav_menu.xml" value="0.25364583333333335" />
       </map>

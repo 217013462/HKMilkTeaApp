@@ -2,6 +2,13 @@
     <string name="app_name">HKMilkTeaApp</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="textViewMain1">
+        Hong Kong-style milk tea, as known as “Silk Stocking Milk Tea”, is one of the most iconic drinks that represents Hong Kong. It is a fusion that brings western and eastern culture together, just like Hong Kong itself.
+    </string>
+    <string name="textViewMain2">
+        British milk tea was introduced to Hong Kong soon after Hong Kong became a British colony in 1842. As fresh milk is expensive and not commonly used in Chinese cuisine, food stalls replicate their own version of milk tea in a lower cost. It soon became very popular among the grassroots with a booming success. Hong Kong-style milk tea is now a classic drink that can easily be found in different types of restaurants.
+    </string>
+    <string name="textViewMain3">
+Even though the beverage started in grassroots, it takes a lot of knowledge to make a perfect Hong Kong-style milk tea. This much-loved local beverage takes a few steps to make: blending tea leaves, boiling and infusing the tea, force-pouring the tea, brewing the tea and force-pouring the milk. The tea-making technique does not only epitomise the fusion and development of Hong Kong East-meets-West food culture, but also gives a glimpse of how locals live and eat.
+    </string>
 </resources>

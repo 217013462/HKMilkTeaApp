@@ -24,6 +24,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        if(savedInstanceState == null) {
+            supportFragmentManager.beginTransaction().replace(R.id.frameLayout,MainFragment()).commit()
+        }
+
 //        val user = Firebase.auth.currentUser
 //        val email = user?.email
 //        val textViewHomeWelcome = findViewById<TextView>(R.id.textViewHomeWelcome)
@@ -43,9 +47,15 @@ class MainActivity : AppCompatActivity() {
             it.isChecked = true
 
             when(it.itemId){
-                R.id.navHome -> Toast.makeText(applicationContext, "Clicked Home", Toast.LENGTH_SHORT).show()
-                R.id.navTutorialTools -> Toast.makeText(applicationContext, "Clicked Tutorial Tools", Toast.LENGTH_SHORT).show()
-                R.id.navTutorialProcedures -> Toast.makeText(applicationContext, "Clicked Tutorial Procedures", Toast.LENGTH_SHORT).show()
+                R.id.navHome -> {
+                    replaceFragment(MainFragment(), it.title.toString())
+                }
+                R.id.navTutorialTools -> {
+                    replaceFragment(ToolsFragment(), it.title.toString())
+                }
+                R.id.navTutorialProcedures -> {
+                    replaceFragment(ProceduresFragment(), it.title.toString())
+                }
                 R.id.navTutorialVideos -> {
                     replaceFragment(VideoFragment(), it.title.toString())
                 }
@@ -53,7 +63,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.navMap -> {
                     replaceFragment(MapsFragment(), it.title.toString())
                 }
-                //Toast.makeText(applicationContext, "Clicked Map", Toast.LENGTH_SHORT).show()
                 R.id.navLogout -> {
                     FirebaseAuth.getInstance().signOut()
                     startActivity(Intent(this,LoginActivity::class.java))
