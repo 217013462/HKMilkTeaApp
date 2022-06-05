@@ -1,13 +1,16 @@
 package shape.edu.hkmilkteaapp
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -36,8 +39,12 @@ class NoteFragment : Fragment() {
         noteDao = NoteDao()
 
         buttonAddNote.setOnClickListener {
+
             val note = editTextNote.text.toString()
+
             if(note.isNotEmpty()) {
+
+                hideKeyboard()
 
                 // using Note data class and NoteDao to add note to Firebase
                 noteDao.addNote(note)
@@ -46,6 +53,7 @@ class NoteFragment : Fragment() {
                 val transaction = requireFragmentManager().beginTransaction()
                 transaction.replace(R.id.frameLayout, NotesFragment())
                 transaction.commit()
+
             } else {
                 // warn user to input something before submitting the note
                 Toast.makeText(requireContext(), "Please type something before you submit", Toast.LENGTH_SHORT).show()
@@ -54,6 +62,13 @@ class NoteFragment : Fragment() {
 
         return view
 
+    }
+
+    private fun hideKeyboard() {
+        if (view != null) {
+            val hide = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            hide.hideSoftInputFromWindow(requireView().windowToken,0)
+        }
     }
 
 }
