@@ -11,4 +11,26 @@
     <string name="textViewMain3">
 Even though the beverage started in grassroots, it takes a lot of knowledge to make a perfect Hong Kong-style milk tea. This much-loved local beverage takes a few steps to make: blending tea leaves, boiling and infusing the tea, force-pouring the tea, brewing the tea and force-pouring the milk. The tea-making technique does not only epitomise the fusion and development of Hong Kong East-meets-West food culture, but also gives a glimpse of how locals live and eat.
     </string>
+
+    <string-array name="tools">
+        <item>Tea Pot</item>
+        <item>Stainless Steel Ring</item>
+        <item>Cotton Filter Sock Strainer</item>
+        <item>Measuring Spoon</item>
+        <item>Measuring Mug</item>
+        <item>Tea Leaves</item>
+        <item>Evaporated / Condensed milk</item>
+        <item>Sweetener (Optional)</item>
+    </string-array>
+
+    <string-array name="procedures">
+        <item>Pour water into the kettle and bring it to a boil</item>
+        <item>Fix the tea strainer on the mouth of another kettle. Fill the tea strainer with tea leaves</item>
+        <item>Pour boiling water into the tea strainer. Lift the tea strainer such that the tea can slip into the empty kettle</item>
+        <item>Place the tea-filled antimony tea pot on an electrical hotplate to rest. The lid has to leave a small opening and kept slightly opened for convenient checking.</item>
+        <item>The tea is next force poured between the two kettle three to four times. The tea is then rested for another two minutes</item>
+        <item>Pour the tea into the cup</item>
+        <item>Add milk into the cup and sugar as preferred. The milk tea is served</item>
+    </string-array>
+
 </resources>
