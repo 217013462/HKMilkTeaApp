@@ -16,6 +16,7 @@ class NoteFragment : Fragment() {
 
     private lateinit var editTextNote : EditText
     private lateinit var buttonAddNote : Button
+    private lateinit var noteDao: NoteDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,14 +33,21 @@ class NoteFragment : Fragment() {
 
         editTextNote = view.findViewById(R.id.editTextNote)
         buttonAddNote = view.findViewById(R.id.buttonAddNote)
+        noteDao = NoteDao()
 
         buttonAddNote.setOnClickListener {
             val note = editTextNote.text.toString()
             if(note.isNotEmpty()) {
+
+                // using Note data class and NoteDao to add note to Firebase
+                noteDao.addNote(note)
+
+                // navigate back to Notes Fragment
                 val transaction = requireFragmentManager().beginTransaction()
                 transaction.replace(R.id.frameLayout, NotesFragment())
                 transaction.commit()
             } else {
+                // warn user to input something before submitting the note
                 Toast.makeText(requireContext(), "Please type something before you submit", Toast.LENGTH_SHORT).show()
             }
         }
