@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
@@ -60,7 +59,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.navTutorialVideos -> {
                     replaceFragment(VideoFragment(), it.title.toString())
                 }
-                R.id.navNotes -> Toast.makeText(applicationContext, "Clicked Notes", Toast.LENGTH_SHORT).show()
+                R.id.navNotes -> {
+                    replaceFragment(NotesFragment(), it.title.toString())
+                }
                 R.id.navMap -> {
                     replaceFragment(MapsFragment(), it.title.toString())
                 }
