@@ -28,13 +28,14 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction().replace(R.id.frameLayout,MainFragment()).commit()
         }
 
-//        val user = Firebase.auth.currentUser
-//        val email = user?.email
-//        val textViewHomeWelcome = findViewById<TextView>(R.id.textViewHomeWelcome)
-//        textViewHomeWelcome.text = "$email"
-
         drawerLayout = findViewById(R.id.drawerLayout)
         val navView : NavigationView = findViewById(R.id.navigationView)
+
+        val user = Firebase.auth.currentUser
+        val email = user?.email
+        val navHeader = navView.getHeaderView(0)
+        val navHeaderEmail = navHeader.findViewById<TextView>(R.id.textViewUserEmail)
+        navHeaderEmail.text = "$email"
 
         toggle =ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
