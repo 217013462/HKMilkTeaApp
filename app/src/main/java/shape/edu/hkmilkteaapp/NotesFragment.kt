@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -76,6 +77,14 @@ class NotesFragment : Fragment() {
         adapter = NotesAdapter(recyclerViewOption)
         newRecyclerView.adapter = adapter
 
+        adapter.setOnItemClickListener(object : NotesAdapter.onItemClickListener {
+            override fun onItemClick(position: Int) {
+
+                Toast.makeText(requireContext(), "you clicked on item $position", Toast.LENGTH_SHORT).show()
+
+            }
+        })
+
         // swipe to delete note
         ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
             override fun onMove(
@@ -90,6 +99,7 @@ class NotesFragment : Fragment() {
                 adapter.deleteNote(position)
             }
         }).attachToRecyclerView(newRecyclerView)
+
     }
 
     override fun onStart() {

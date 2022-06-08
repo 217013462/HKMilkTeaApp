@@ -12,9 +12,33 @@ class NotesAdapter(options: FirestoreRecyclerOptions<Note>) : FirestoreRecyclerA
     options
 ) {
 
-    class NotesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    private lateinit var notesListener : onItemClickListener
+
+    interface onItemClickListener {
+
+        fun onItemClick(position: Int)
+
+    }
+
+    fun setOnItemClickListener(listener: onItemClickListener) {
+
+        notesListener = listener
+
+    }
+
+    class NotesViewHolder(itemView: View, listener: onItemClickListener) : RecyclerView.ViewHolder(itemView) {
 
         val textViewNotes: TextView = itemView.findViewById(R.id.textViewNotes)
+
+        init {
+
+            itemView.setOnClickListener{
+
+                listener.onItemClick(absoluteAdapterPosition)
+
+            }
+
+        }
 
     }
 
@@ -24,7 +48,9 @@ class NotesAdapter(options: FirestoreRecyclerOptions<Note>) : FirestoreRecyclerA
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotesViewHolder {
 
-        return NotesViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.notes_list,parent,false))
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.notes_list,parent,false)
+
+        return NotesViewHolder(itemView, notesListener)
 
     }
 
