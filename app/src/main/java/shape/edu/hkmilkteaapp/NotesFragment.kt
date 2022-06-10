@@ -1,5 +1,6 @@
 package shape.edu.hkmilkteaapp
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -80,7 +81,14 @@ class NotesFragment : Fragment() {
         adapter.setOnItemClickListener(object : NotesAdapter.onItemClickListener {
             override fun onItemClick(position: Int) {
 
-                Toast.makeText(requireContext(), "you clicked on item $position", Toast.LENGTH_SHORT).show()
+                val fsText = adapter.getItem(position).text
+
+                val bundle = Bundle()
+                bundle.putString("data",fsText)
+
+                val fragment = UpdateFragment()
+                fragment.arguments = bundle
+                fragmentManager?.beginTransaction()?.replace(R.id.frameLayout,fragment)?.commit()
 
             }
         })

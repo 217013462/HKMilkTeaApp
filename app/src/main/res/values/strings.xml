@@ -32,7 +32,5 @@ Even though the beverage started in grassroots, it takes a lot of knowledge to m
         <item>Pour the tea into the cup</item>
         <item>Add milk into the cup and sugar as preferred. The milk tea is served</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
