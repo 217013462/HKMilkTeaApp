@@ -6,12 +6,23 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.biometric.BiometricManager
+import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
+import androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL
+import androidx.biometric.BiometricPrompt
+import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import java.util.concurrent.Executor
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var  auth: FirebaseAuth
+
+    private lateinit var executor: Executor
+    private lateinit var biometricPrompt: BiometricPrompt
+    private lateinit var promptInfo: BiometricPrompt.PromptInfo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,6 +30,64 @@ class LoginActivity : AppCompatActivity() {
 
         // create and initialize FirebaseAuth
         auth= FirebaseAuth.getInstance()
+
+        executor = ContextCompat.getMainExecutor(this)
+
+        biometricPrompt = BiometricPrompt(this, executor,
+            object : BiometricPrompt.AuthenticationCallback() {
+
+                override fun onAuthenticationError(errorCode: Int,
+                                                   errString: CharSequence) {
+                    super.onAuthenticationError(errorCode, errString)
+                    Toast.makeText(applicationContext,
+                        "Authentication error: $errString", Toast.LENGTH_SHORT)
+                        .show()
+                }
+
+                override fun onAuthenticationSucceeded(
+                    result: BiometricPrompt.AuthenticationResult) {
+                    super.onAuthenticationSucceeded(result)
+                    Toast.makeText(applicationContext,
+                        "Authentication succeeded!", Toast.LENGTH_SHORT)
+                        .show()
+                }
+
+                override fun onAuthenticationFailed() {
+                    super.onAuthenticationFailed()
+                    Toast.makeText(applicationContext, "Authentication failed",
+                        Toast.LENGTH_SHORT)
+                        .show()
+                }
+
+            })
+
+        promptInfo = BiometricPrompt.PromptInfo.Builder()
+            .setTitle("Biometric login for my app")
+            .setSubtitle("Log in using your biometric credential")
+            .setNegativeButtonText("Use account password")
+            .build()
+
+        val bioLogin = findViewById<ImageView>(R.id.imageViewBioFinger)
+        bioLogin.setOnClickListener{
+            biometricPrompt.authenticate(promptInfo)
+        }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val biometricManager = BiometricManager.from(this)
+        when (biometricManager.canAuthenticate(BIOMETRIC_STRONG or DEVICE_CREDENTIAL)) {
+            BiometricManager.BIOMETRIC_SUCCESS ->
+                Toast.makeText(applicationContext,"App can authenticate using biometrics.",Toast.LENGTH_SHORT).show()
+            BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE ->
+                Toast.makeText(applicationContext,"No biometric features available on this device.",Toast.LENGTH_SHORT).show()
+            BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE ->
+            Toast.makeText(applicationContext,"Biometric features are currently unavailable.",Toast.LENGTH_SHORT).show()
+            BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED ->
+                // Prompts the user to create credentials that your app accepts.
+            Toast.makeText(applicationContext,"Biometric features are not enrolled.",Toast.LENGTH_SHORT).show()
+        }
     }
 
     // login with email and password that input by user
