@@ -1,6 +1,7 @@
 package shape.edu.hkmilkteaapp
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -13,16 +14,19 @@ import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
 import androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import java.util.concurrent.Executor
 
 class LoginActivity : AppCompatActivity() {
-    private lateinit var  auth: FirebaseAuth
+    private lateinit var auth: FirebaseAuth
 
     private lateinit var executor: Executor
     private lateinit var biometricPrompt: BiometricPrompt
     private lateinit var promptInfo: BiometricPrompt.PromptInfo
+    private lateinit var sharedPreferences: SharedPreferences
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +39,6 @@ class LoginActivity : AppCompatActivity() {
 
         biometricPrompt = BiometricPrompt(this, executor,
             object : BiometricPrompt.AuthenticationCallback() {
-
                 override fun onAuthenticationError(errorCode: Int,
                                                    errString: CharSequence) {
                     super.onAuthenticationError(errorCode, errString)
@@ -47,9 +50,31 @@ class LoginActivity : AppCompatActivity() {
                 override fun onAuthenticationSucceeded(
                     result: BiometricPrompt.AuthenticationResult) {
                     super.onAuthenticationSucceeded(result)
-                    Toast.makeText(applicationContext,
-                        "Authentication succeeded!", Toast.LENGTH_SHORT)
-                        .show()
+
+                    val email = sharedPreferences.getString("email","")
+                    val password = sharedPreferences.getString("password","")
+
+                    auth.signInWithEmailAndPassword(email.toString(),password.toString()).addOnCompleteListener{ task ->
+                        if(task.isSuccessful){
+
+                            // keeping the result as firebase user
+                            val firebaseUser : FirebaseUser = task.result!!.user!!
+                            intent.putExtra("user_id", firebaseUser.uid)
+                            intent.putExtra("email_id",firebaseUser.email)
+
+                            // clear activities
+                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+
+                            // redirect to MainActivity if successfully register
+                            val intent= Intent(applicationContext,MainActivity::class.java)
+
+                            startActivity(intent)
+                            finish()
+                        }
+                    }.addOnFailureListener { exception ->
+                        Toast.makeText(applicationContext,exception.localizedMessage,Toast.LENGTH_LONG).show()
+                    }
+
                 }
 
                 override fun onAuthenticationFailed() {
@@ -58,7 +83,6 @@ class LoginActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT)
                         .show()
                 }
-
             })
 
         promptInfo = BiometricPrompt.PromptInfo.Builder()
@@ -72,6 +96,14 @@ class LoginActivity : AppCompatActivity() {
             biometricPrompt.authenticate(promptInfo)
         }
 
+        sharedPreferences = getSharedPreferences("data", MODE_PRIVATE)
+        val isLogged = sharedPreferences.getBoolean("isLogged", false)
+        if (isLogged) {
+            val email = sharedPreferences.getString("email","")
+            val password = sharedPreferences.getString("password","")
+
+            bioLogin.visibility = View.VISIBLE
+        }
     }
 
     override fun onResume() {
@@ -116,6 +148,14 @@ class LoginActivity : AppCompatActivity() {
                         intent.putExtra("user_id", firebaseUser.uid)
                         intent.putExtra("email_id",firebaseUser.email)
 
+                        // saving the login detail to share preferences
+                        val sPEditor : SharedPreferences.Editor = getSharedPreferences("data",
+                            MODE_PRIVATE).edit()
+                        sPEditor.putString("email", email)
+                        sPEditor.putString("password", password)
+                        sPEditor.putBoolean("isLogged", true)
+                        sPEditor.apply()
+
                         // clear activities
                         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
 
@@ -128,7 +168,6 @@ class LoginActivity : AppCompatActivity() {
                 }.addOnFailureListener { exception ->
                     Toast.makeText(applicationContext,exception.localizedMessage,Toast.LENGTH_LONG).show()
                 }
-
             }
         }
     }
