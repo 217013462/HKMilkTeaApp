@@ -14,6 +14,8 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.DocumentId
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
@@ -83,8 +85,12 @@ class NotesFragment : Fragment() {
 
                 val fsText = adapter.getItem(position).text
 
+                val fsNoteId = adapter.snapshots.getSnapshot(position).id
+                //Toast.makeText(requireContext(),"$fsNoteId",Toast.LENGTH_LONG).show()
+
                 val bundle = Bundle()
                 bundle.putString("data",fsText)
+                bundle.putString("noteId", fsNoteId)
 
                 val fragment = UpdateFragment()
                 fragment.arguments = bundle

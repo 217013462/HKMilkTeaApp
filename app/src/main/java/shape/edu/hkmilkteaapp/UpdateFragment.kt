@@ -10,11 +10,10 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.google.firebase.firestore.DocumentId
 
 class UpdateFragment : Fragment() {
 
-    private lateinit var editTextUpdateNote : EditText
-    private lateinit var buttonUpdateNote : Button
     private lateinit var noteDao: NoteDao
 
     //override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +35,7 @@ class UpdateFragment : Fragment() {
 
         val args = this.arguments
         val fsData = args?.get("data")
+        val fsNoteId = args?.get("noteId")
 
         editTextUpdateNote.setText(fsData.toString())
 
@@ -48,8 +48,8 @@ class UpdateFragment : Fragment() {
 
                 hideKeyboard()
 
-                // using Note data class and NoteDao to add note to Firebase
-                //noteDao.addNote(note)
+                // using Note data class and NoteDao to update note to Firebase
+                noteDao.updateNote(note, fsNoteId as String)
 
                 // navigate back to Notes Fragment
                 val transaction = requireFragmentManager().beginTransaction()
