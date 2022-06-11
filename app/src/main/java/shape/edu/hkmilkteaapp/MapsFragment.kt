@@ -27,7 +27,6 @@ class MapsFragment : Fragment(), OnMapReadyCallback, LocationListener {
 
     private lateinit var locationManager: LocationManager
     private lateinit var mMap: GoogleMap
-    //private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -57,7 +56,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback, LocationListener {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            //request for location permission if it is not granted
+            // request for location permission if it is not granted
             ActivityCompat.requestPermissions(
                 requireActivity(),
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),

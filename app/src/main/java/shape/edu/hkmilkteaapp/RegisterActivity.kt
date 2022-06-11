@@ -24,7 +24,7 @@ class RegisterActivity : AppCompatActivity() {
     fun register(view: View){
         val editTextEmailAddress = findViewById<EditText>(R.id.editTextEmailAddress)
         val editTextPassword = findViewById<EditText>(R.id.editTextPassword)
-        //trimming off empty spaces
+        // trimming off empty spaces
         val email=editTextEmailAddress.text.toString().trim { it <= ' ' }
         val password=editTextPassword.text.toString().trim { it <= ' ' }
 

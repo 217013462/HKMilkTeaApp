@@ -10,16 +10,10 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.google.firebase.firestore.DocumentId
 
 class UpdateFragment : Fragment() {
 
     private lateinit var noteDao: NoteDao
-
-    //override fun onCreate(savedInstanceState: Bundle?) {
-    //    super.onCreate(savedInstanceState)
-    //    }
-    //}
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -30,8 +24,6 @@ class UpdateFragment : Fragment() {
         val buttonUpdateNote = view.findViewById<Button>(R.id.buttonUpdateNote)
         val buttonCancelUpdate = view.findViewById<Button>(R.id.buttonCancelUpdate)
         noteDao = NoteDao()
-
-        //val editText: EditText = view.findViewById<EditText>(R.id.editTextUpdateNote)
 
         val args = this.arguments
         val fsData = args?.get("data")
@@ -71,8 +63,6 @@ class UpdateFragment : Fragment() {
             transaction.commit()
 
         }
-
-
 
         return view
     }
