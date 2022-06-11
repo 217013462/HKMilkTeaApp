@@ -60,6 +60,17 @@ class NoteFragment : Fragment() {
             }
         }
 
+        val buttonCancelNote = view.findViewById<Button>(R.id.buttonCancelNote)
+        buttonCancelNote.setOnClickListener {
+            hideKeyboard()
+
+            // navigate back to Notes Fragment
+            val transaction = requireFragmentManager().beginTransaction()
+            transaction.replace(R.id.frameLayout, NotesFragment())
+            transaction.commit()
+
+        }
+
         return view
 
     }

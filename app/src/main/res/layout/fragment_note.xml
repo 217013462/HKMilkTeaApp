@@ -17,7 +17,19 @@
             android:text="Save"
             android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/buttonCancelNote"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/buttonCancelNote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="Cancel"
+            android:backgroundTint="@color/milkTeaLighter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/buttonAddNote"
+
             app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
@@ -26,7 +38,6 @@
             android:layout_height="0dp"
             android:inputType="textMultiLine"
             android:layout_margin="10dp"
-            android:hint="Tap to add your tea notes here.."
             android:gravity="top|start"
             android:scrollbars="vertical"
             app:layout_constraintBottom_toTopOf="@+id/buttonAddNote"
